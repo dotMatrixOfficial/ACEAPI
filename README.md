@@ -4,8 +4,8 @@
 * Node, NPM & MongoDB
 
 ## Installation
-* Clone this repo: ``` git clone https://github.com/raj00008/CBSA.git ```
-* cd CBSA
+* Clone this repo: ``` git clone https://github.com/dotMatrixOfficial/ACEAPI.git ```
+* cd ACEAPI
 * Install dependecies: ``` npm install ```
 * Install nodemon: ``` npm install nodemon -g ```
 * Run: nodemon server.js

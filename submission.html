@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Data Manipulation</title>
+    <style>
+        *{
+            padding:0;
+            margin: 0;
+            box-sizing:border-box;
+        }
+        html{
+            font-size: 20px;
+        }
+        body{
+            display: flex;
+            flex-direction: row;
+        }
+        section{
+            flex-basis: 50vw;
+            border: 1px solid #999;
+        }
+        section pre{
+            margin: 2rem;
+        }
+        .btn{
+            cursor: pointer;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <!--
+Take the JSON population data and use filter(), map(), and reduce(). 
+Start with the Array of countries that each include their continent plus an array of their 3 largest cities. 
+Create a new Array that has just the name of the country plus a total of the population 
+of the cities in each country. The array will first be filtered by continent.
+Topics: array methods, filter, map, reduce, sort
+    -->
+    <div class="btn">FETCH</div>
+    
+    <input type="text" id="make">
+    <input type="text" id="model">
+    <input type="text" id="year">
+    <section id="original">
+        <pre></pre>
+    </section>
+    <section id="updated">
+        <pre></pre>
+    </section>
+    <script>
+        let original, updated;
+        let data = [
+            {id:1, country:'Canada', population:36700000, capital:'Ottawa', founded:1867},
+            {id:2, country:'Germany', population:82800000, capital:'Berlin', founded:1990},
+            {id:3, country:'Japan', population:126800000, capital:'Tokyo', founded:-660},
+            {id:4, country:'India', population:1339000000, capital:'New Dehli', founded:1947},
+            {id:5, country:'Portugal', population:10300000, capital:'Lisbon', founded:1910},
+            {id:6, country:'Brazil', population:209300000, capital:'Brasília', founded:1822},
+            {id:7, country:'Australia', population:24600000, capital:'Canberra', founded:1901}
+        ];
+        document.addEventListener('DOMContentLoaded', ()=>{
+          document.querySelector(".btn").addEventListener('click', ()=>{
+              
+
+//    let formData= new FormData()
+//        formData.append("make","honda")
+//        formData.append("model","civic")
+//        formData.append("yeard",2018)
+    let make=document.getElementById("make").value
+    let model=document.getElementById("model").value
+    let year=parseInt(document.getElementById("year").value)
+    console.log(year)
+
+    let formData={
+                  "make":make,
+                    "model":model,
+                    "year":year
+                }
+                var XHR = new XMLHttpRequest();
+  var urlEncodedData = "";
+  var urlEncodedDataPairs = [];
+  var name;
+
+  // Turn the data object into an array of URL-encoded key/value pairs.
+  for(name in formData) {
+      console.log(name);
+    urlEncodedDataPairs.push(encodeURIComponent(name) + '=' + encodeURIComponent(formData[name]));
+  }
+
+  // Combine the pairs into a single string and replace all %-encoded spaces to 
+  // the '+' character; matches the behaviour of browser form submissions.
+  urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
+
+  // Define what happens on successful data submission
+  XHR.addEventListener('load', function(event) {
+    alert('Yeah! Data sent and response loaded.');
+  });
+
+  // Define what happens in case of error
+  XHR.addEventListener('error', function(event) {
+    alert('Oops! Something goes wrong.');
+  });
+
+  // Set up our request
+  XHR.open('POST', 'http://localhost:3000/vehicles/');
+
+  // Add the required HTTP header for form data POST requests
+  XHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  XHR.setRequestHeader('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOWEzZTViZjJlMjkzMWUzMTYwZmRkNSIsImlhdCI6MTU1NDU5MTgwNiwiZXhwIjoxNTU0Njc4MjA2fQ.eJ7UNVSYoZQAcv471ZhalPbZoZm7CGIIo3zYrMc2awY');
+
+
+  // Finally, send our data.
+  XHR.send(urlEncodedData);
+    // let opts ={
+    //     body:JSON.stringify(formData),
+    //     method: "POST",
+    //         headers: { 
+    //          'Accept': 'application/json',
+    //          'Content-Type': 'application/x-www-form-urlencoded',
+    //          'x-access-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOWEzZTViZjJlMjkzMWUzMTYwZmRkNSIsImlhdCI6MTU1NDU5MTgwNiwiZXhwIjoxNTU0Njc4MjA2fQ.eJ7UNVSYoZQAcv471ZhalPbZoZm7CGIIo3zYrMc2awY'
+    //      }
+    // }
+
+            //   fetch('http://localhost:3000/vehicles/',opts)
+            //   .then(resp=>resp.json())
+            //   .then(data=>console.log("Your Data:", data))
+            //   .catch(err=>console.log("Error", err.message))
+          })
+        })
+    </script>
+</body>
+</html>

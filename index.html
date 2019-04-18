@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MY APP</title>
+</head>
+<body>
+   
+ 
+ <!--  SINGLE FILE -->
+ <form action="http://localhost:3000/concealments/upload/undercarriage/5c9fdc8e56c0ad544b4cdc3a" method="POST">
+    <input type="file" name="myFile" />
+   <input id ="upload" type="button" value="Upload a file" />
+</form>
+ <script>
+     document.getElementById("upload").addEventListener("click",function(){
+        var xhr = new XMLHttpRequest();
+
+xhr.open('POST', 'http://localhost:3000/concealments/upload/undercarriage/5c9fdc8e56c0ad544b4cdc3a', true);
+xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+xhr.setRequestHeader('x-access-token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOWEzZTViZjJlMjkzMWUzMTYwZmRkNSIsImlhdCI6MTU1NDE2MTk4MSwiZXhwIjoxNTU0MjQ4MzgxfQ.QgSg6RwxDDudHY8FHSfwd55uvNFJUZfKpwtGrN8QfKI');
+
+headers = new Headers();
+headers.set("Access-Control-Allow-Origin", "*");
+headers.set( 'Content-Type', 'application/json',);
+headers.set( 'Accept', '*');
+headers.append('x-access-token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOWEzZTViZjJlMjkzMWUzMTYwZmRkNSIsImlhdCI6MTU1NDE2MTk4MSwiZXhwIjoxNTU0MjQ4MzgxfQ.QgSg6RwxDDudHY8FHSfwd55uvNFJUZfKpwtGrN8QfKI')
+xhr.onload = function () {
+    // do something to response
+    console.log(this.responseText);
+};
+xhr.send('x-access-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOWEzZTViZjJlMjkzMWUzMTYwZmRkNSIsImlhdCI6MTU1NDE2MTk4MSwiZXhwIjoxNTU0MjQ4MzgxfQ.QgSg6RwxDDudHY8FHSfwd55uvNFJUZfKpwtGrN8QfKI');
+     })
+ </script>
+ <!-- <script src="upload.js"/> -->
+</body>
+</html>
